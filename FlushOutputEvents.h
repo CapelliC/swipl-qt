@@ -43,7 +43,7 @@ class ConsoleEdit;
  */
 struct PQCONSOLESHARED_EXPORT FlushOutputEvents {
 
-    FlushOutputEvents(ConsoleEdit *target = 0, int msec_delta_refresh = 10);
+    FlushOutputEvents(ConsoleEdit *target = nullptr, int msec_delta_refresh = 10);
     void flush();
 
     ConsoleEdit *target;

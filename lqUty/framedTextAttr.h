@@ -41,7 +41,7 @@ class LQUTYSHARED_EXPORT framedTextAttr : public QObject, public QTextObjectInte
     Q_INTERFACES(QTextObjectInterface)
 
 public:
-    explicit framedTextAttr(QObject *parent = 0);
+    explicit framedTextAttr(QObject *parent = nullptr);
 
     static int type() { return QTextFormat::UserObject+1; }
     static int prop() { return 1; }

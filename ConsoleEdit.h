@@ -65,7 +65,7 @@ class PQCONSOLESHARED_EXPORT ConsoleEdit : public ConsoleEditBase {
 public:
 
     /** build command line interface to SWI Prolog engine */
-    ConsoleEdit(int argc, char **argv, QWidget *parent = 0);
+    ConsoleEdit(int argc, char **argv, QWidget *parent = nullptr);
 
     /** create in prolog thread - call win_open_console() */
     ConsoleEdit(Swipl_IO* io, QString Title);
@@ -163,7 +163,7 @@ protected:
     struct req_new_console : public QEvent {
         Swipl_IO *iop;
         QString title;
-        req_new_console(Swipl_IO *iop, QString title) : QEvent(User), iop(iop), title(title) {}
+        req_new_console(Swipl_IO *iop, QString title);
     };
     virtual void customEvent(QEvent *event);
 

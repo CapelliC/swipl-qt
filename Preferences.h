@@ -47,7 +47,7 @@ class Preferences : public QSettings
     Q_OBJECT
 public:
 
-    explicit Preferences(QObject *parent = 0);
+    explicit Preferences(QObject *parent = nullptr);
     ~Preferences();
 
     /** let user select with a font dialog */

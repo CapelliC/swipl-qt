@@ -65,7 +65,7 @@ inline QString t2w(PlTerm t) {
 inline QString serialize(PlTerm t) {
     wchar_t *s;
 
-    if ( PL_get_wchars(t, NULL, &s, CVT_WRITEQ|BUF_RING) )
+    if ( PL_get_wchars(t, nullptr, &s, CVT_WRITEQ|BUF_RING) )
       return QString::fromWCharArray(s);
 
     throw PlTypeError("text", t);
@@ -140,13 +140,13 @@ inline PlTerm build_list(PlTerm host, QVector<PlTerm> ts) {
       PlQuery s("select", PlTermv(X, X, Rs));
       while (s.next_solution()) {}
  */
-#define LOOP__ { } operator bool() { return next_solution(); }
-#define query0(P) struct P : PlQuery { P() : PlQuery(#P, V()) LOOP__ };
-#define query1(P) struct P : PlQuery { P(T A) : PlQuery(#P, V(A)) LOOP__ };
-#define query2(P) struct P : PlQuery { P(T A, T B) : PlQuery(#P, V(A, B)) LOOP__ };
-#define query3(P) struct P : PlQuery { P(T A, T B, T C) : PlQuery(#P, V(A, B, C)) LOOP__ };
-#define query4(P) struct P : PlQuery { P(T A, T B, T C, T D) : PlQuery(#P, V(A, B, C, D)) LOOP__ };
-#define query5(P) struct P : PlQuery { P(T A, T B, T C, T D, T E) : PlQuery(#P, V(A, B, C, D, E)) LOOP__ };
+#define query_loop { } operator bool() { return next_solution(); }
+#define query0(P) struct P : PlQuery { P() : PlQuery(#P, V()) query_loop };
+#define query1(P) struct P : PlQuery { P(T A) : PlQuery(#P, V(A)) query_loop };
+#define query2(P) struct P : PlQuery { P(T A, T B) : PlQuery(#P, V(A, B)) query_loop };
+#define query3(P) struct P : PlQuery { P(T A, T B, T C) : PlQuery(#P, V(A, B, C)) query_loop };
+#define query4(P) struct P : PlQuery { P(T A, T B, T C, T D) : PlQuery(#P, V(A, B, C, D)) query_loop };
+#define query5(P) struct P : PlQuery { P(T A, T B, T C, T D, T E) : PlQuery(#P, V(A, B, C, D, E)) query_loop };
 
 #endif
 

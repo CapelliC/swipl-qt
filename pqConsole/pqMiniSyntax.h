@@ -36,7 +36,7 @@ class PQCONSOLESHARED_EXPORT pqMiniSyntax : public QSyntaxHighlighter
     Q_OBJECT
 public:
 
-    pqMiniSyntax(QObject *parent = 0) : QSyntaxHighlighter(parent) { setup(); }
+    pqMiniSyntax(QObject *parent = nullptr) : QSyntaxHighlighter(parent) { setup(); }
     pqMiniSyntax(QTextDocument *parent) : QSyntaxHighlighter(parent) { setup(); }
     pqMiniSyntax(QTextEdit *parent)  : QSyntaxHighlighter(parent) { setup(); }
     pqMiniSyntax(QPlainTextEdit *parent)  : QSyntaxHighlighter(parent) { setup(); }

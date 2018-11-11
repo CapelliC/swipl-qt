@@ -53,7 +53,7 @@ public:
     /** seek to position */  static int64_t _seek64_f(void *handle, int64_t pos, int whence);
 
     /** standard interface */
-    explicit Swipl_IO(QObject *parent = 0);
+    explicit Swipl_IO(QObject *parent = nullptr);
 
     /** surrogate signal/slot not working in foreign thread */
     void take_input(QString cmd);

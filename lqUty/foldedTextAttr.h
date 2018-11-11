@@ -42,7 +42,7 @@ class LQUTYSHARED_EXPORT foldedTextAttr : public QObject, public QTextObjectInte
     Q_INTERFACES(QTextObjectInterface)
 
 public:
-    explicit foldedTextAttr(QObject *parent = 0);
+    explicit foldedTextAttr(QObject *parent = nullptr);
 
     static int type() { return QTextFormat::UserObject+2; }
     static int prop() { return 2; }

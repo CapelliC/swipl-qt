@@ -1,31 +1,14 @@
 #--------------------------------------------------
-# swipl-win.pro: SWI-Prolog / QT interface
+# swipl-qt.pro: SWI-Prolog / QT interface
 #--------------------------------------------------
-#
-# REPL in QTextEdit on a background logic processor
+# REPL for SWI-Prolog in QTextEdit
 #--------------------------------------------------
-# Ing. Capelli Carlo - Brescia 2013
+# Ing. Capelli Carlo - Brescia 2013,2018
 
-#-------------------------------------------------
-# Project created by QtCreator 2013-07-10T10:26:52
-#-------------------------------------------------
-
-QT += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-macx {
-    QT_CONFIG -= no-pkg-config
-    CONFIG += c++11
-    ICON = swipl.icns
-    QMAKE_MACOS_DEPLOYMENT_TARGET = 10.6
-    QMAKE_MAC_SDK = macosx10.12
-}
-
+QT += core gui widgets
+CONFIG += c++11
 TARGET = swipl-win
 TEMPLATE = app
-
-# please, not obsolete compiler
-QMAKE_CXXFLAGS += -std=c++0x
 
 # provide appropriate linking mode for
 # static compilation of pqConsole source files
@@ -73,6 +56,14 @@ mingw {
     SWIPL_BASE  = "../../"
     INCLUDEPATH += $$SWIPL_BASE/include ../cpp
     LIBS += -L$$SWIPL_BASE/lib/x64-win64 -lswipl
+}
+
+macx {
+    QT_CONFIG -= no-pkg-config
+    CONFIG += c++11
+    ICON = swipl.icns
+    QMAKE_MACOS_DEPLOYMENT_TARGET = 10.6
+    QMAKE_MAC_SDK = macosx10.12
 }
 
 SOURCES += main.cpp \

@@ -91,7 +91,7 @@ static QWidget *search_widget(std::function<bool(QWidget* w)> match) {
                     s.push(c);
         }
     }
-    return 0;
+    return nullptr;
 }
 
 /** search widgets hierarchy looking for the first (the only)
@@ -110,7 +110,7 @@ static ConsoleEdit *console_by_thread() {
  */
 static ConsoleEdit *console_peek_first() {
     return qobject_cast<ConsoleEdit*>(search_widget([](QWidget* p) {
-        return qobject_cast<ConsoleEdit*>(p) != 0;
+        return qobject_cast<ConsoleEdit*>(p) != nullptr;
     }));
 }
 

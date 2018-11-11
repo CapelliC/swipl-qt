@@ -56,7 +56,7 @@ class PQCONSOLESHARED_EXPORT SwiPrologEngine : public QThread, public FlushOutpu
     Q_OBJECT
 public:
 
-    explicit SwiPrologEngine(ConsoleEdit *target, QObject *parent = 0);
+    explicit SwiPrologEngine(ConsoleEdit *target, QObject *parent = nullptr);
     ~SwiPrologEngine();
 
     /** main console startup point */
@@ -88,7 +88,7 @@ public:
     static void msleep(unsigned long n) { QThread::msleep(n); }
 
     /** query engine about expected interface */
-    static bool is_tty(const FlushOutputEvents *target = 0);
+    static bool is_tty(const FlushOutputEvents *target = nullptr);
 
 signals:
 

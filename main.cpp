@@ -41,38 +41,6 @@
 static FILE *logfile;
 static bool  nolog = true;
 
-#if QT_VERSION < 0x050000
-
-static QtMsgHandler previous;
-
-static void logger(QtMsgType type, const char *msg)
-{
-    if (!logfile) {
-        if (previous)
-            previous(type, msg);
-        return;
-    }
-
-    switch (type) {
-    case QtDebugMsg:
-        fprintf(logfile, "Debug: %s\n", msg);
-        break;
-    case QtWarningMsg:
-        fprintf(logfile, "Warning: %s\n", msg);
-        break;
-    case QtCriticalMsg:
-        fprintf(logfile, "Critical: %s\n", msg);
-        break;
-    case QtFatalMsg:
-        fprintf(logfile, "Fatal: %s\n", msg);
-        abort();
-    }
-
-    fflush(logfile);
-}
-
-#else
-
 static QtMessageHandler previous;
 static void
 logger(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -101,17 +69,13 @@ logger(QtMsgType type, const QMessageLogContext &context, const QString &msg)
         fprintf(logfile, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
         abort();
         break;
-#if QT_VERSION >= 0x050500
     case QtInfoMsg:
         fprintf(logfile, "Info: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
         break;
-#endif
     }
 
     fflush(logfile);
 }
-
-#endif
 
 /* Note that QApplication is created using new to avoid destruction
    on program shutdown.  Destroying causes a crash in XCloseDisplay()
@@ -119,12 +83,11 @@ logger(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 */
 
 int main(int argc, char *argv[]) {
-    const char *logname;
-
-    if ( (logname = getenv("QDEBUG")) ) {
+    const char *logname = getenv("QDEBUG");
+    if (logname) {
         nolog = false;
-        if ( strcmp(logname, "stderr") != 0 )
-	    logfile = fopen(logname, "w");
+        if (strcmp(logname, "stderr") != 0)
+            logfile = fopen(logname, "w");
     }
 
 #if QT_VERSION < 0x050000

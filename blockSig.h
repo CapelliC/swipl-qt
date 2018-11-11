@@ -46,7 +46,7 @@ struct blockSig {
     blockSig(QObject* target) : target(target) { current = target->blockSignals(true); }
     ~blockSig() { off(); }
 
-    void off() { if (target) { target->blockSignals(current); target = 0; } }
+    void off() { if (target) { target->blockSignals(current); target = nullptr; } }
 
 private:
 

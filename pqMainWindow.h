@@ -64,7 +64,7 @@ public:
 
     /** default constructor
      */
-    explicit pqMainWindow(QWidget *parent = 0);
+    explicit pqMainWindow(QWidget *parent = nullptr);
 
     /** load memory script
      */
@@ -86,7 +86,7 @@ public:
     void addActionPq(ConsoleEdit *ce, QMenu *cmmenu, QString label, QString action);
 
     /** ditto */
-    QAction* add_action(ConsoleEdit *ce, QMenu *mn, QString Label, QString ctxtmod, QString Goal, QAction *before = 0);
+    QAction* add_action(ConsoleEdit *ce, QMenu *mn, QString Label, QString ctxtmod, QString Goal, QAction *before = nullptr);
 
 signals:
     
